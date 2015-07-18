@@ -1,0 +1,121 @@
+<div ng-controller="restsController" class="row">
+  <style>
+.angular-google-map-container { height: 410px;
+
+  border:10px solid #ffffff;
+  padding:10px;
+}
+  </style>
+  <script src='//maps.googleapis.com/maps/api/js'></script>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="hidden-xs">
+            <ul class="mainNav">
+              
+                <li>
+                    <a href="#/main" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                      <span style="position: relative; z-index: 2;"><i class="fa fa-cutlery fa-2x"></i></span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                    </a>
+                </li>
+
+                              
+                <li>
+                    <a href="#/rests" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                      <span style="position: relative; z-index: 2;">Restaurants</span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#/visitors" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                      <span style="position: relative; z-index: 2;">Visitors</span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+      </div>
+        
+    </div>
+    <div class="row " ng-controller="restmapController" >
+        <div class="col-md-3 col-xs-12" style>
+          <!-- Restaurant Details -->
+          <div ng-if="viewDetails">
+          <div class="block">
+            <h6 class="blockUlHeader">{{restaurant.name}}</h6>
+            <ul class="blockUl">
+            <li class="input-field noPadding">
+            <b>Open Hours:</b>
+            </li>
+             <li class="input-field noPadding">
+            <b>Menu</b>
+            </li>
+            </ul>
+            </div>
+        </div>
+        <!-- Edit Restaurants-->
+        <div ng-if="editButton">
+          <div class="block">
+            <ul class="blockUl">
+            <li class="input-field noPadding">
+            <table>
+              <tr><td><a class='btn onYellow rised btn-xs' ng-click="showEditForm()">Edit</a></td><td><a class='btn onRed rised btn-xs'>Delete</a></td></tr>
+            </table>
+          
+          </li>
+          </ul>
+          </div>
+        </div>
+        <div ng-if="editForm">
+          <div class="block">
+            <h6 class="blockUlHeader">Edit {{restaurant.name}}</h6>
+            <br/>
+            <ul class="blockUl">
+            <li class="input-field noPadding">
+            <input id="restaurant_name" type="text" ng-model="restaurant.name"  class="validate">
+            <label for="restaurant_name" class="">Restaurant Name</label>
+            </li>
+            <li class="input-field noPadding">
+            <input id="location_name" type="text" ng-model="restaurant.location.location_name" class="validate">
+            <label for="location_name" class="">Location Name</label>
+            </li>
+            <li class="input-field noPadding">
+                    <input id="longitude" type="text" ng-model="restaurant.location.longitude" class="validate">
+                    <label for="longitude" class="">Longitude</label>
+            </li>
+            <li class="input-field noPadding">
+           <input id="latitude" type="text" ng-model="restaurant.location.latitude" class="validate">
+            <label for="latitude" class="">Latitude</label>
+            </li>   
+            <li class="input-field noPadding">
+           
+           <table>
+              <tr><td><a class="btn onYellow rised" id="add_restaurant" ng-click="updateRest(restaurant)">Edit</a></td><td><a ng-click="hideEditForm()" class='btn onRed rised btn-xs'>Cancel</a></td></tr>
+            </table>
+          
+            </li>  
+            </ul>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-9 col-xs-12 " >
+         <div  >
+           <!--zoom level 17.25-->
+           <div >
+              <ui-gmap-google-map center='center' zoom='18.00'>
+                <ui-gmap-marker coords="center" options=""  idkey="rest_id">
+                </ui-gmap-marker>
+              </ui-gmap-google-map>
+          
+           </div>
+           details:{{restaurant}}
+        </div>
+    </div>
+</div>

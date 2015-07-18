@@ -1,0 +1,106 @@
+.white {
+  color: white;
+}
+.green {
+  color: #689f38;
+}
+.black {
+  color: #212121;
+}
+.red {
+  color: #f44336;
+}
+.blue {
+  color: #2962ff;
+}
+.darkBlack {
+  color: #1a1a1a;
+}
+.yellow {
+  color: #ffeb3b;
+}
+.onWhite {
+  background-color: #ffffff;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.bgGreen {
+  background-color: #689f38;
+}
+.bgGray {
+  background-color: #ededed;
+}
+.bgRed {
+  background-color: #f44336;
+}
+.bgBlue {
+  background-color: #2962ff;
+}
+.onDark {
+  color: #e0e0e0;
+}
+.onDark h1,
+.onDark h2,
+.onDark h3,
+.onDark h4,
+.onDark h5,
+.onDark h6,
+.onDark .bigType,
+.onDark strong {
+  color: white;
+}
+.onLight h1,
+.onLight h2,
+.onLight h3,
+.onLight h4,
+.onLight h5,
+.onLight h6,
+.onLight .bigType,
+.onLight strong {
+  color: #212121;
+}
+.bgWhite {
+  background-color: #ffffff;
+}
+.bgBlack {
+  background-color: #212121;
+}
+.bgDarkBlack {
+  background-color: #1a1a1a;
+}
+.onYellow {
+  background-color: #ffeb3b;
+}
+.onYellow:hover {
+  background-color: #fff06e;
+}
+.bg1 {
+  background-image: url("../img/bd1.png");
+}
+.bgi {
+  background-image: url("../img/bgi.jpg");
+}
+.bg2 {
+  background-image: url("../img/bd2.png");
+}
+.bg3 {
+  background-image: url("../img/bd3.png");
+}
+.danger {
+  color: red;
+  background-color: #080808;
+}
+.danger:focus {
+  color: #f44336;
+}
+.circle {
+  border-radius: 50%;
+}
+.gradientBody {
+  background-image: -webkit-linear-gradient(left, #ffffff 50%, #ededed 50%);
+  background-image: -o-linear-gradient(left, #ffffff 50%, #ededed 50%);
+  background-image: linear-gradient(to right, #ffffff 50%, #ededed 50%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffededed', GradientType=1);
+}

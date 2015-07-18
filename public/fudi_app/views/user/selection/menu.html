@@ -1,0 +1,27 @@
+<div>
+
+    <div class="block">
+        <h6 class="blockUlHeader">Add NEw</h6>
+        <ul class="blockUl">
+            <li class="input-field noPadding">
+                <input id="restaurant_name" type="text" ng-model="restaurant.restaurant_name" class="validate">
+                <label for="restaurant_name" class="">Restaurant Name</label>
+            </li>
+            <li class="input-field noPadding">
+                <input id="location_name" type="text" ng-model="restaurant.location_name" class="validate">
+                <label for="location_name" class="">Location Name</label>
+            </li>
+            <li class="input-field noPadding">
+                <input id="longitude" type="text" ng-model="restaurant.longitude" class="validate">
+                <label for="longitude" class="">Longitude</label>
+            </li>
+            <li class="input-field noPadding">
+                <input id="latitude" type="text" ng-model="restaurant.latitude" class="validate">
+                <label for="latitude" class="">Latitude</label>
+            </li>
+            <li class="input-field noPadding">
+                <a class="btn btn-primary" id="add_restaurant" ng-click="addNewRest(restaurant)">Add</a>
+            </li>
+        </ul>
+    </div>
+</div>
