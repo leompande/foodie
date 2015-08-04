@@ -1,0 +1,82 @@
+<div >
+    <div class="row">
+        <div class="col-md-4">
+            <span>Page: {{ currentPage }}</span>
+        </div>
+        <div class="col-md-4">
+            <label for="search">Search:</label>
+            <input type="text" ng-model="q" id="search" class="form-control" placeholder="Filter text">
+        </div>
+        <div class="col-md-4">
+            <label for="search">items per page:</label>
+            <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+        </div>
+    </div>
+    <div class="row" dir-paginate="order in orders | filter:q | itemsPerPage: pageSize" current-page="{{ currentPage }}">
+        <div class="col-md-12">
+            <figure class="gridItem person rounded bgWhite col-md-12">
+               <figcaption class="gridCaption">
+                    <div class="pulsl-left black">
+                        <div class="row" >
+                            <div class="col-md-12" style="border-bottom: 1px solid #bababa;">
+                                <span><strong>Order No.</strong>{{order.id}}</span>
+                                <span class="pull-right" style="font-style: italic">Date : {{order.created_at}}</span>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-top: 5px;font-size: 11px">
+
+                            <div class="col-md-4">
+                                <b>Client Details</b><br>
+                                Name: &nbsp;{{order.client.client_name}}<br>
+                                Phone: {{order.client.phone_number}}<br>
+                                Location: {{order.client.location_id}}<br>
+                                Delivery: {{order.delivery_type}}<br>
+                                Delivery time: {{order.delivery_time}}<br>
+                            </div>
+                            <div class="col-md-4">
+                                <div class=""><b>Ordered Menu</b></div>
+                                <div class="">
+                                    <ul class="">
+
+                                        <li ng-repeat="items in order.ordered_items">
+                                            <span ><i class="fa fa-check"></i></span>
+                                            <span ng-repeat="orderedItem in Ordereditems | filter:{id:items.items_id}">{{orderedItem.item_name}}</span>  - {{items.quantity}} <i>item(s)</i> - <i>Tsh</i> {{items.total_price}}
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <ul class="blockUl">
+                                    <li style="min-height: 0rem!important;">
+                                        <input type="checkbox" id="delivered" >
+                                        <label for="delivered">
+                                            <span class="ico"><i class="fa fa-check-square fa-fw"></i></span>
+                                            <span class="ico"><i class="fa fa-square fa-fw"></i></span>
+                                            Delivered</label>
+                                    </li>
+                                    <li style="min-height: 0rem!important;">
+                                        <input type="checkbox" id="rejected" disabled="disabled">
+                                        <label for="rejected">
+                                            <span class="ico"><i class="fa fa-check-square fa-fw"></i></span>
+                                            <span class="ico"><i class="fa fa-square fa-fw"></i></span>
+                                            Rejected</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="pull-right">-->
+                        <!--<a href="index.html#1" class="ico black" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span style="position: relative; z-index: 2;"><i class="fa fa-skype"></i></span><span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;"><span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span></span></a>-->
+                    <!--</div>-->
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="row">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="public/fudi_app/js/pegination/dirPagination.tpl.html"></dir-pagination-controls>
+
+    </div>
+</div>

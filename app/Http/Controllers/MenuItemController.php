@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MenuItem;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,7 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-        //
+        return MenuItem::all();
     }
 
     /**
@@ -34,9 +35,27 @@ class MenuItemController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $menuItem = new MenuItem();
+        foreach ( $request->all() as $column => $value ) {
+
+            switch ($column) {
+                case "item_name":
+                    $menuItem->item_name = $value;
+                    break;
+                case "menu_id":
+                    $menuItem->menu_id = $value;
+                    break;
+                case "price":
+                    $menuItem->price = $value;
+                    break;
+                case "restaurant_id":
+                    $menuItem->restaurant_id = $value;
+                    break;
+            }
+        }
+        $menuItem->save();
     }
 
     /**
@@ -47,7 +66,7 @@ class MenuItemController extends Controller
      */
     public function show($id)
     {
-        //
+        return MenuItem::find($id);
     }
 
     /**
@@ -67,9 +86,33 @@ class MenuItemController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        // update restaurant
+        $menuItem = MenuItem::find($request->id);
+
+
+        foreach ( $request->all() as $column => $value ) {
+
+
+            switch ($column) {
+                case "item_name":
+                    $menuItem->item_name = $value;
+                    break;
+                case "menu_id":
+                    $menuItem->menu_id = $value;
+                    break;
+                case "price":
+                    $menuItem->price = $value;
+                    break;
+                case "restaurant_id":
+                    $menuItem->restaurant_id = $value;
+                    break;
+            }
+        }
+        $menuItem->save();
+
+        return $menuItem;
     }
 
     /**
@@ -80,6 +123,8 @@ class MenuItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete restaurant
+        $menuItem = MenuItem::find($id);
+        $menuItem->destroy($id);
     }
 }

@@ -12,4 +12,14 @@ class Restaurant extends Model
     {
         return $this->belongsTo('App\Location');
     }
+
+    public function menu()
+    {
+        return $this->belongsTo('App\Menu');
+    }
+
+    public function menuItems()
+    {
+        return $this->hasMany('App\MenuItem');
+    }
 }

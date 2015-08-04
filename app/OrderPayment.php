@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class OrderPayment extends Model
 {
-    protected $table = 'menus';
-
+    //
 }

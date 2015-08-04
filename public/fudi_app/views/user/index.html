@@ -1,27 +1,59 @@
+<div  class="row" ng-controller="settingController">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="hidden-xs">
+                <ul class="mainNav" style="margin-left: 4.8rem;">
 
-  <div class="row" ng-controller="userController">
-      <!-- Standard a -->
-      <a type="a" class="btn onYellow rised">Menu</a>
+                    <li>
+                        <a href="#/main" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <span style="position: relative; z-index: 2;"><i class="fa fa-cutlery fa-2x"></i></span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                        </a>
+                    </li>
 
-      <!-- Provides extra visual weight and identifies the primary action in a set of as -->
-      <a type="a" class="btn onYellow rised">Orders</a>
 
-      <!-- Indicates a successful or positive action -->
-      <a type="a" class="btn onYellow rised">Viewers</a>
+                    <li>
+                        <a href="#/rests" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <span style="position: relative; z-index: 2;">Restaurants</span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                        </a>
+                    </li>
 
-      <!-- Contextual a for informational alert messages -->
-      <a type="a" class="btn onYellow rised">Likes</a>
-  </div>
+                    <!--<li>-->
+                        <!--<a href="#/visitors" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">-->
+                            <!--<span style="position: relative; z-index: 2;">Visitors</span>-->
+                      <!--<span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">-->
+                      <!--<span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>-->
+                      <!--</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                </ul>
+            </nav>
+        </div>
 
-          <div class="row " >
-              <div class="col-md-3 " style>
-                  <div ng-include="user/selection/menu.html"></div>
-              </div>
-              <div class="col-md-9 " style>
-                  <div class="row">
-                      aertaetr
-                  </div>
-                  
-              </div>
-          </div>
+    </div>
+    <div class="row " >
+        <div class="col-md-3 " >
+            <div>
+                <div class="block">
+                    <h6 class="blockUlHeader"></h6>
 
+                        <ul class="blockUl">
+                            <li><a style="cursor: pointer;" class="black" ng-click="flipMenu('menus')">MENU</a></li>
+                            <li><a style="cursor: pointer;" class="black" ng-click="flipMenu('orders')">ORDERS</a></li>
+                            <li><a style="cursor: pointer;" class="black" ng-click="flipMenu('visitors')">VISITORS</a></li>
+                            <li><a style="cursor: pointer;" class="black" ng-click="flipMenu('visitors')">REPORT</a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-xs-12" style>
+            <div class="row" ng-include src="loadHtml">
+
+            </div>
+        </div>
+    </div>

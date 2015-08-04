@@ -1,0 +1,57 @@
+<div >
+    <div class="row">
+        <div class="col-md-1"><a class="btn rised bgGreen" ng-click="showForm()" title="add new menu item">new</a></div>
+        <div class="col-md-11" ng-show="add_new">
+            <form class="form-inline">
+                <div class="form-group col-md-4 input-field noPadding">
+                    <label for="exampleInputName2">Menu Name</label>
+                    <input type="text" class="form-control col-md-5" ng-model="entry.item_name" id="exampleInputName2" >
+                    <input type="hidden"  ng-model="entry.restaurant_id" value="">
+                    <input type="hidden"  ng-model="entry.menu_id" value="">
+                </div>
+                <div class="form-group col-md-4 input-field noPadding">
+                    <label for="exampleInputEmail2">Price (Tsh)</label>
+                    <input type="text" class="form-control " ng-model="entry.price" id="exampleInputEmail2" >
+                </div>
+                <div class="form-group col-md-4 input-field noPadding">
+                    <a class="btn rised" ng-click="addMenuItem(entry)">Save</a>&nbsp<a title="close form" ng-click="hideForm()"><i class="fa fa-times"></i></a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <table  id="dataTable" class="table table-bordered">
+                <caption style="font-weight: bolder;">{{menu.menu_name}} : Item List</caption>
+                <thead>
+                    <th>Menu Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in items | filter:{menu_id:menu.id}" >
+                    <td>
+                        <span ng-show="tableText">{{item.item_name}}</span>
+                        <span ng-show="tableInput">
+                            <input type="text" ng-model="item.item_name">
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-show="tableText">{{item.price}}</span>
+                        <span ng-show="tableInput">
+                            <input type="text" ng-model="item.price">
+                        </span></td>
+                    <td style="width:20px!important; ">
+                        <a style="cursor: pointer;" class="green" title="edit menu" ng-click="editItem(item,$event)"><i class="fa fa-save" ng-show="saveIcon"></i><i class="fa fa-edit" ng-show="updateIcon"></i></a>
+                        &nbsp;
+                        <a style="cursor: pointer;" class="red" title="delete menu" ng-click="deleteItem(item)"><i class="fa fa-trash"></i></a>
+
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

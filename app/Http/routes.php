@@ -18,3 +18,6 @@
 
 Route::resource('restaurant', 'RestaurantController');
 Route::resource('location', 'LocationController');
+Route::resource('menu', 'MenuController');
+Route::resource('menuitem', 'MenuItemController');
+Route::resource('order', 'OrdersController');

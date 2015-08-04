@@ -75,10 +75,181 @@ fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filt
   
 });
 fudiApp.controller("visitorsController",function($scope,$route){});
-fudiApp.controller("userController",function($scope,$route,$http){
-    
-});
+fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$filter,MenuService,MenuItemService,OrderService){
 
+
+    $scope.loadHtml = 'public/fudi_app/views/admin/menu/orders.html';
+    $scope.menu = null;
+    $scope.menu_type = 'Breakfast';
+    $scope.addNewMenu = function(newMenu){
+        MenuService.save(newMenu);
+    }
+    //$scope.addNewMenu({menu_name:"Specials"});
+    MenuService.query().$promise.then(function(data) {
+        $scope.menus = data;
+        });
+    MenuItemService.query().$promise.then(function(data) {
+        $scope.menuItems = data;
+        $scope.this_rest_menu_items = $filter('filterRestItems')(data, {restaurant_id:$routeParams.id});
+        $scope.current_rest = $routeParams.id;
+    });
+
+    $scope.getOrders = function(){
+        OrderService.query().$promise.then(function(data) {
+            $scope.orders = data;
+        });
+    };
+    $scope.getOrders();
+
+    $scope.flipMenu = function(menu){
+        $scope.loadHtml =  'public/fudi_app/views/admin/menu/'+menu+'.html';
+
+    }
+    $scope.flipMenu('menus');
+    $scope.currentDirective = function(menu){
+        if($scope.menu_type==menu){
+            return true
+        }else{
+           return false;
+        }
+    }
+
+    $scope.currentMenu = function(menu,$event){
+        $scope.menu_type = menu;
+    }
+
+
+
+
+});
+fudiApp.directive('settingMenu',['MenuItemService',function(MenuItemService){
+    return {
+        link:function($scope,element,attrs){
+            $scope.entry={
+                item_name:"",
+                price:"",
+                restaurant_id:parseInt($scope.current_rest_id), // set restaurant ID for the populated menu
+                menu_id:parseInt($scope.menu.id) //set the menu Id for populated menu
+            }
+
+            $scope.tableText = true;
+            $scope.tableInput = false;
+            $scope.saveIcon = false;
+            $scope.updateIcon = true;
+            $scope.add_new = false;
+            $scope.showForm = function(){
+                $scope.add_new = true;
+            }
+
+            $scope.hideForm = function(){
+                $scope.add_new = false;
+            }
+
+            $scope.getMenuItems = function(){
+                MenuItemService.query().$promise.then(function(data) {
+                    $scope.items = data;
+                });
+            };
+            $scope.getMenuItems();
+
+
+            var updateMenuItem = function(menuItem){
+                MenuItemService.update({ id:menuItem.id },menuItem).$promise.then(function(data) {
+                    $scope.getMenuItems();
+                });
+            };
+
+            var deleteMenuItem = function(menuItem){
+                MenuItemService.delete({ id:menuItem.id }).$promise.then(function(data) {
+                    $scope.getMenuItems();
+                });
+            };
+
+            $scope.addMenuItem = function(entry){
+                MenuItemService.save(entry).$promise.then(function(data) {
+                    $scope.getMenuItems();
+                });
+            }
+
+            $scope.editItem = function(Item,$event){
+                if(!$scope.tableInput){
+                    $scope.tableInput = true;
+                    $scope.tableText = false;
+                    $scope.updateIcon = false;
+                    $scope.saveIcon = true;
+                }else{
+
+
+                    updateMenuItem(Item);
+                    $scope.updateIcon = true;
+                    $scope.saveIcon = false;
+                    $scope.tableInput = false;
+                    $scope.tableText = true;
+                }
+            }
+
+            $scope.deleteItem = function(Item){
+                deleteMenuItem(Item);
+            }
+
+            $scope.$watch('menu',function(){
+
+            });
+
+            $scope.$watch('items',function(){
+
+            });
+
+
+            ////TEST DATATABLES
+
+
+
+
+        },
+        scope: {
+            current: "=current",
+            menu: "=menu",
+            items: "=items",
+            current_rest_id: "=restaurant"
+        },
+        restrict:"E",
+        replace: true,
+        templateUrl:"public/fudi_app/views/admin/directives/templates/setting-menu.html"
+    }
+
+
+}]);
+fudiApp.directive('settingOrders',['OrderService','MenuItemService',function(OrderService,MenuItemService){
+    return {
+        link:function($scope,element,attrs){
+            $scope.currentPage = 1;
+            $scope.pageSize = 3;
+            $scope.getMenuItems = function(){
+                MenuItemService.query().$promise.then(function(data) {
+                    $scope.Ordereditems = data;
+                });
+            };
+            $scope.getMenuItems();
+
+            //$scope.getOrders = function(){
+            //    OrderService.query().$promise.then(function(data) {
+            //        $scope.orders = data;
+            //    });
+            //};
+            //$scope.getOrders();
+        },
+        scope: {
+            current: "=current",
+            orders: "=orders"
+        },
+        restrict:"E",
+        replace: true,
+        templateUrl:"public/fudi_app/views/admin/directives/templates/setting-order.html"
+    }
+
+
+}]);
 fudiApp.filter('filterRestaurant', function () {
     return function (restaurants,input) {
         var restaurant = null;
@@ -95,16 +266,24 @@ fudiApp.filter('filterRestaurant', function () {
         return restaurant;
     };
 });
+fudiApp.filter('filterRestItems', function () {
+    return function (restaurants,input) {
+        var restaurant = [];
 
-fudiApp.factory('RestaurantService',function($resource) {
-   return $resource("public/index.php/restaurant/:id",{
-    id: '@id'
-  },
-    {
-        'update': { method:'PUT' }
-    });
-    
-    
- });
+
+        if(restaurants){
+
+           for (var i = 0; i < restaurants.length; i++) {
+
+            if (restaurants[i].restaurant_id == input.restaurant_id) {
+
+                restaurant.push(restaurants[i]);
+            }
+        }
+        }
+
+        return restaurant;
+    };
+});
 
 

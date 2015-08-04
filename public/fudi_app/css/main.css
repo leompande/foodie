@@ -2172,7 +2172,7 @@ Grid
   padding-right: 1.06666667em;
 }
 .gridCaption {
-  padding-left: 1.06666667em;
+  /*padding-left: 1.06666667em;*/
   padding-top: 0.66666667em;
   padding-bottom: 0.66666667em;
 }

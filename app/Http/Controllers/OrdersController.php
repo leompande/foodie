@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Menu;
 use Illuminate\Http\Request;
-
+use App\Order;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MenuController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-       return Menu::all();
+        $orders = Order::all();
+        $orders->load('orderedItems', 'client');
+
+        return $orders;
     }
 
     /**
@@ -27,7 +29,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,11 +37,9 @@ class MenuController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $menu = new Menu();
-        $menu->menu_name = $request->menu_name;
-        $menu->save();
+        //
     }
 
     /**
@@ -50,7 +50,10 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        return Menu::find($id);
+        $orders = Order::find($id);
+        $orders->load('orderedItems', 'client');
+
+        return $orders;
     }
 
     /**
