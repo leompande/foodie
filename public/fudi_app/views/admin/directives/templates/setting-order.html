@@ -12,7 +12,9 @@
             <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
         </div>
     </div>
-    <div class="row" dir-paginate="order in orders | filter:q | itemsPerPage: pageSize" current-page="{{ currentPage }}">
+    <div class="row" dir-paginate="order in orders | filter : {order_status:o_status} | filter:q | itemsPerPage: pageSize" current-page="{{ currentPage }}">
+    <!--<div class="row" dir-paginate="order in (secondFilterOlderList = (orderList = (orders | filter : {order_status:o_status}))  | filter:q | itemsPerPage: pageSize)" current-page="{{ currentPage }}">-->
+    <!--<div class="row" ng-repeat="order in orderList = (orders | filter : {order_status:o_status}  | filter:q | itemsPerPage: pageSize)" current-page="{{ currentPage }}">-->
         <div class="col-md-12">
             <figure class="gridItem person rounded bgWhite col-md-12">
                <figcaption class="gridCaption">
@@ -34,6 +36,7 @@
                                 Location: {{order.client.location_id}}<br>
                                 Delivery: {{order.delivery_type}}<br>
                                 Delivery time: {{order.delivery_time}}<br>
+                                Status: {{order.order_status}}<br>
                             </div>
                             <div class="col-md-4">
                                 <div class=""><b>Ordered Menu</b></div>

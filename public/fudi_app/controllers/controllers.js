@@ -97,10 +97,17 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
     $scope.getOrders = function(){
         OrderService.query().$promise.then(function(data) {
             $scope.orders = data;
+            $scope.newOrders = $filter('filterOrderByStatus')(data, {status:'new'});
+
         });
     };
     $scope.getOrders();
-
+    $scope.o_status= 'new';
+    $scope.orderStatus = function(ostatus,$event){
+        $scope.o_status = ostatus;
+        angular.element($("a.menuButton")).removeClass('onYellow');
+        angular.element($event.target).parent().addClass("onYellow")
+    }
     $scope.flipMenu = function(menu){
         $scope.loadHtml =  'public/fudi_app/views/admin/menu/'+menu+'.html';
 
@@ -220,28 +227,30 @@ fudiApp.directive('settingMenu',['MenuItemService',function(MenuItemService){
 
 
 }]);
-fudiApp.directive('settingOrders',['OrderService','MenuItemService',function(OrderService,MenuItemService){
+fudiApp.directive('settingOrders',['OrderService','MenuItemService','$filter',function(OrderService,MenuItemService,$filter){
     return {
         link:function($scope,element,attrs){
             $scope.currentPage = 1;
             $scope.pageSize = 3;
+
+
+            $scope.o_status = 'new';
             $scope.getMenuItems = function(){
                 MenuItemService.query().$promise.then(function(data) {
                     $scope.Ordereditems = data;
+
                 });
             };
             $scope.getMenuItems();
 
-            //$scope.getOrders = function(){
-            //    OrderService.query().$promise.then(function(data) {
-            //        $scope.orders = data;
-            //    });
-            //};
-            //$scope.getOrders();
+            $scope.$watch('o_status',function(){
+                return $scope.o_status;
+            })
         },
         scope: {
             current: "=current",
-            orders: "=orders"
+            orders: "=orders",
+            o_status: "=status"
         },
         restrict:"E",
         replace: true,
@@ -283,6 +292,26 @@ fudiApp.filter('filterRestItems', function () {
         }
 
         return restaurant;
+    };
+});
+
+fudiApp.filter('filterOrderByStatus', function () {
+    return function (order,input) {
+        var orders = [];
+
+
+        if(order){
+
+           for (var i = 0; i < order.length; i++) {
+
+            if (order[i].order_status == input.status) {
+
+                orders.push(order[i]);
+            }
+        }
+        }
+
+        return orders;
     };
 });
 

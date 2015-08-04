@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer("restaurant_id");
             $table->integer("client_id");
             $table->text("delivery_type");
+            $table->text("order_status");
             $table->timestamps();
         });
     }
