@@ -25,6 +25,7 @@
     <script src="public/fudi_app/js/angular-1.4.2/angular-route.js"></script>
     <script src="public/fudi_app/js/angular-1.4.2/angular-resource.js"></script>
     <script src="public/fudi_app/js/angular-1.4.2/angular-animate.js"></script>
+    <script src="public/fudi_app/js/angular-1.4.2/angular-cookies.js"></script>
     <script src="public/fudi_app/js/jquery-2.1.3.min.js"></script>
     <script src="public/fudi_app/js/d3.min.js"></script>
     <script src="public/fudi_app/js/owl.carousel.js"></script>
@@ -52,10 +53,26 @@
         .ngFade.ng-leave-active { opacity: 0; }
     </style>
 </head>
-<body ng-app="fudiApp">
+<body ng-app="fudiApp" ng-controller="mainController">
 <div id="header">
     <div class="container">
-        <div class="logo" style="font-size: 14px;">Fudi</div>
+        <div class="col-md-6">
+            <div class="logo" style="font-size: 14px;">Fudi</div>
+        </div>
+        <div class="col-md-6 logo" style="text-align: right;">
+            <div class="pull-right"   ng-show="logedUser">
+                <ul class="mainNav">
+                    <li>
+                        <a href="index.html" class="btn" style="-webkit-tap-highlight-color: white;text-transform:capitalize!important;color:white;"><span style="position: relative; z-index: 2;">
+                            <i class="fa fa-user fa-2x"></i>&nbsp;&nbsp;{{logedUser.username}}
+                        </span><span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;"><span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span></span></a>
+                        <ul class="dropDown menu">
+                            <li><a href="#/">Profile</a></li>
+                            <li><a style="cursor: pointer;" ng-click="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul></div>
+        </div>
     </div>
 </div>
 <!--<div class="main">-->
@@ -67,39 +84,7 @@
     padding-right: 0px!important;
     padding-left: 0px!important;
     padding-left: 0px!important;
-" ng-controller="mainController" ng-view class="ngFade">
-        <div class="row">
-            <div class="col-lg-3">
-                <aside class="aside onLight bgGray">
-
-                </aside>
-            </div>
-            <div class="col-lg-6">
-                <aside class="aside onLight bgGray">
-                    <div class="block">
-                        <h6 class="blockUlHeader">Login</h6>
-                        <ul class="blockUl">
-                            <li class="input-field noPadding">
-                                <input id="username" type="text" class="validate">
-                                <label for="username" class="">User Name</label>
-                            </li>
-                            <li class="input-field noPadding">
-                                <input id="password" type="password" class="validate">
-                                <label for="password" class="">Password</label>
-                            </li>
-                            <li class="input-field noPadding">
-                                <a id="login" class="btn rised rippleWrap">Login</a>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-            <div class="col-lg-3">
-                <aside class="aside onLight bgGray">
-
-                </aside>
-            </div>
-        </div>
+"  ng-view class="ngFade">
     </div>
 <!--</div>-->
 

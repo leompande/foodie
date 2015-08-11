@@ -1,7 +1,7 @@
 /**
  * Created by leo on 7/9/15.
  */
-var fudiApp = angular.module("fudiApp",['ngRoute','uiGmapgoogle-maps','ngResource','ngAnimate','angularUtils.directives.dirPagination']);
+var fudiApp = angular.module("fudiApp",['ngRoute','uiGmapgoogle-maps','ngResource','ngCookies','ngAnimate','angularUtils.directives.dirPagination']);
 
 // fleet module configurations
 fudiApp.config(['$routeProvider', function($routeProvider) {
@@ -33,3 +33,27 @@ fudiApp.config(['$routeProvider', function($routeProvider) {
 
         .otherwise({redirectTo: '/'});
 }]);
+fudiApp.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+console.log(event);
+        //if (!Auth.isLoggedIn()) {
+        //    //event.preventDefault();
+        //    $location.path('/login');
+        //}
+        //else {
+        //    $location.path('/rests');
+        //}
+    });
+}]);
+
+fudiApp.factory('Auth', function(){
+    var user;
+    return{
+        setUser : function(aUser){
+            user = aUser;
+        },
+        isLoggedIn : function(){
+            return(user)? user : false;
+        }
+    }
+})

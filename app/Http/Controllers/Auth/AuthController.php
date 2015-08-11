@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -62,4 +62,51 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function login($username,$password)
+    {
+
+        $users = User::all();
+        $logedInUser = null;
+        foreach($users as $user){
+        if($user->email==$username){
+            if($user->password==$password){
+//                Auth::loginUsingId($user->id);
+                return $user;
+            }else{
+
+            }
+
+        }
+        }
+
+        return null;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function logout($userId)
+    {
+
+        $users = User::all();
+        foreach($users as $user){
+        if($user->id==$userId){
+//            Auth::logout();
+                return "true";
+
+        }
+        }
+
+        return "false";
+    }
+
+
 }

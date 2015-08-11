@@ -21,3 +21,6 @@ Route::resource('location', 'LocationController');
 Route::resource('menu', 'MenuController');
 Route::resource('menuitem', 'MenuItemController');
 Route::resource('order', 'OrdersController');
+Route::get('user/login/{username}/{password}', 'Auth\AuthController@login');
+Route::get('user/logout/{userId}', 'Auth\AuthController@logout');
+Route::resource('user', 'userController');

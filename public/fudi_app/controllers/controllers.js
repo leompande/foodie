@@ -3,13 +3,57 @@
  */
 
 var fudiApp = angular.module("fudiApp");
-fudiApp.controller("loginController",function($scope,$route,$location){
+fudiApp.controller("loginController",function($scope,$route,$location,$timeout,$cookieStore,AuthService,Auth){
+    $scope.isLoggedIn = false;
+    $scope.response = null;
+    $scope.user = null;
+    var vm = this;
+    //mainController.apply(vm, arguments);
+
+    $scope.login = function(username,password,callback){
+        AuthService.Login(username,password,callback);
+    };
+
+
+
     $scope.processLogin = function(user){
-        $location.path( "/rests" );
+
+
+        //console.log(user);
+        $scope.login(user.email,user.password,function(response,user){
+
+            if(response.success){
+                Auth.setUser(user);
+                //$scope.user = user;
+                //$scope.isLoggedIn = true;
+                //$location.path( "/rests" );
+            }else{
+                $scope.response = response;
+                console.log($scope.response)
+            }
+
+        });
+
     };
 });
 
-fudiApp.controller("mainController",function($scope,$route,$http,RestaurantService){
+fudiApp.controller("mainController",function($scope,$route,$http,$cookieStore,$location,RestaurantService,AuthService,Auth){
+
+        $scope.logedUser = $cookieStore.get('logedUser');
+
+    $scope.logout = function(){
+        AuthService.LogOut($scope.logedUser.id,function(response,data){
+            if(response.success){
+                $cookieStore.remove('logedUser');
+                $location.path( "/login" );
+            }else{
+
+            }
+
+
+        });
+    };
+
   RestaurantService.prototype.$save = function() {
     if (this.id) {
         return this.$update();
@@ -81,6 +125,7 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
     $scope.loadHtml = 'public/fudi_app/views/admin/menu/orders.html';
     $scope.menu = null;
     $scope.menu_type = 'Breakfast';
+    $scope.restaurant_id = $routeParams.id;
     $scope.addNewMenu = function(newMenu){
         MenuService.save(newMenu);
     }
@@ -97,16 +142,19 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
     $scope.getOrders = function(){
         OrderService.query().$promise.then(function(data) {
             $scope.orders = data;
-            $scope.newOrders = $filter('filterOrderByStatus')(data, {status:'new'});
+            $scope.newOrders = $filter('filterOrderByStatus')(data, {status:'new',restaurant_id:$scope.restaurant_id});
 
         });
     };
     $scope.getOrders();
     $scope.o_status= 'new';
-    $scope.orderStatus = function(ostatus,$event){
-        $scope.o_status = ostatus;
+    $scope.menuStatus = function(ostatus,$event){
+        if(ostatus==''){}else{
+            $scope.o_status = ostatus;
+        }
         angular.element($("a.menuButton")).removeClass('onYellow');
-        angular.element($event.target).parent().addClass("onYellow")
+
+        angular.element($event.target).addClass("onYellow");
     }
     $scope.flipMenu = function(menu){
         $scope.loadHtml =  'public/fudi_app/views/admin/menu/'+menu+'.html';
@@ -120,7 +168,6 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
            return false;
         }
     }
-
     $scope.currentMenu = function(menu,$event){
         $scope.menu_type = menu;
     }
@@ -209,10 +256,6 @@ fudiApp.directive('settingMenu',['MenuItemService',function(MenuItemService){
 
 
             ////TEST DATATABLES
-
-
-
-
         },
         scope: {
             current: "=current",
@@ -250,6 +293,7 @@ fudiApp.directive('settingOrders',['OrderService','MenuItemService','$filter',fu
         scope: {
             current: "=current",
             orders: "=orders",
+            restaurant: "=restaurant",
             o_status: "=status"
         },
         restrict:"E",
@@ -304,7 +348,7 @@ fudiApp.filter('filterOrderByStatus', function () {
 
            for (var i = 0; i < order.length; i++) {
 
-            if (order[i].order_status == input.status) {
+            if (order[i].order_status == input.status && order[i].restaurant_id==input.restaurant_id) {
 
                 orders.push(order[i]);
             }

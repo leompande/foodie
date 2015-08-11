@@ -10,15 +10,16 @@
                 <h6 class="blockUlHeader">Login</h6>
                 <ul class="blockUl">
                     <li class="input-field noPadding">
-                        <input id="username" type="text" ng-model="user.username" class="validate">
-                        <label for="username" class="">User Name</label>
+                        <input id="username" type="text" ng-model="user.email" class="validate">
+                        <label for="username" class="">Email</label>
                     </li>
                     <li class="input-field noPadding">
                         <input id="password" type="password" ng-model="user.password" class="validate">
                         <label for="password" class="">Password</label>
                     </li>
+                    <li class="input-field noPadding" ng-show="response" style="color:#ff0000;">{{response.message}}</li>
                     <li class="input-field noPadding">
-                        <a id="login" class="btn rised rippleWrap" ng-click="processLogin(user)">Login</a>
+                        <a id="login" class="btn rised rippleWrap" ng-click="processLogin(user)">Login</a> <span style="font-size: 12px;"><a href="#/">forggot username or passsword</a> ?</span>
                     </li>
                 </ul>
             </div>
