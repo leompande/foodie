@@ -11,7 +11,6 @@ fudiApp.factory('RestaurantService',function($resource) {
 
 });
 
-
 fudiApp.factory('MenuService',function($resource) {
     return $resource("public/index.php/menu/:id",{
             id: '@id'
@@ -22,6 +21,7 @@ fudiApp.factory('MenuService',function($resource) {
 
 
 });
+
 fudiApp.factory('MenuItemService',function($resource) {
     return $resource("public/index.php/menuitem/:id",{
             id: '@id'
@@ -43,8 +43,6 @@ fudiApp.factory('OrderService',function($resource) {
 
 
 });
-
-
 
 fudiApp.service('OwnerService',function($resource) {
     return $resource("public/index.php/user/:id",{
@@ -82,7 +80,6 @@ function logUserOut(userId) {
     }
 
 });
-
 
 fudiApp.service('AuthService',function(UserService,$timeout,$cookies) {
     var service = {};
