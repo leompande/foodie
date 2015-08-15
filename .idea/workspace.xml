@@ -25,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/fudi_app/controllers/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5866337" vertical-offset="1329" max-vertical-offset="3132">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3132">
               <caret line="157" column="58" selection-start-line="157" selection-start-column="58" selection-end-line="157" selection-end-column="58" />
               <folding>
                 <element signature="e#959#1372#0" expanded="false" />
@@ -53,7 +53,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/fudi_app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1116">
+            <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1116">
               <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
               <folding>
                 <element signature="e#0#36#0" expanded="false" />
@@ -114,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/fudi_app/services/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-              <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.20642202" vertical-offset="162" max-vertical-offset="1980">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
                 <element signature="e#98#254#0" expanded="false" />
                 <element signature="e#155#188#0" expanded="false" />
@@ -127,13 +127,9 @@
                 <element signature="e#516#670#0" expanded="false" />
                 <element signature="e#725#876#0" expanded="false" />
                 <element signature="e#933#1081#0" expanded="false" />
-                <element signature="e#1154#1782#0" expanded="false" />
                 <element signature="e#1473#1579#0" expanded="false" />
-                <element signature="e#1857#4194#0" expanded="false" />
-                <element signature="e#2009#3256#0" expanded="false" />
                 <element signature="e#2885#3013#0" expanded="false" />
                 <element signature="e#3042#3161#0" expanded="false" />
-                <element signature="e#3296#4188#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -569,18 +565,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1317" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35764706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35764706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2977099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2977099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1017,29 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/fudi_app/services/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <element signature="e#98#254#0" expanded="false" />
-            <element signature="e#155#188#0" expanded="false" />
-            <element signature="e#198#248#0" expanded="false" />
-            <element signature="e#309#459#0" expanded="false" />
-            <element signature="e#516#670#0" expanded="false" />
-            <element signature="e#725#876#0" expanded="false" />
-            <element signature="e#933#1081#0" expanded="false" />
-            <element signature="e#1154#1782#0" expanded="false" />
-            <element signature="e#1473#1579#0" expanded="false" />
-            <element signature="e#1857#4194#0" expanded="false" />
-            <element signature="e#2009#3256#0" expanded="false" />
-            <element signature="e#2885#3013#0" expanded="false" />
-            <element signature="e#3042#3161#0" expanded="false" />
-            <element signature="e#3296#4188#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/MenuItemTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.0" vertical-offset="216" max-vertical-offset="774">
@@ -1082,16 +1055,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/fudi_app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="693" max-vertical-offset="1116">
-          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#36#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/fudi_app/views/user/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.296296" vertical-offset="847" max-vertical-offset="1224">
@@ -1102,7 +1065,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/fudi_app/controllers/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5866337" vertical-offset="1329" max-vertical-offset="3132">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3132">
           <caret line="157" column="58" selection-start-line="157" selection-start-column="58" selection-end-line="157" selection-end-column="58" />
           <folding>
             <element signature="e#959#1372#0" expanded="false" />
@@ -1119,6 +1082,35 @@
             <element signature="e#9722#10549#0" expanded="false" />
             <element signature="e#10997#11348#0" expanded="false" />
             <element signature="e#11402#11750#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/fudi_app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="693" max-vertical-offset="1116">
+          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#36#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/fudi_app/services/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20642202" vertical-offset="162" max-vertical-offset="1980">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#98#254#0" expanded="false" />
+            <element signature="e#155#188#0" expanded="false" />
+            <element signature="e#198#248#0" expanded="false" />
+            <element signature="e#309#459#0" expanded="false" />
+            <element signature="e#516#670#0" expanded="false" />
+            <element signature="e#725#876#0" expanded="false" />
+            <element signature="e#933#1081#0" expanded="false" />
+            <element signature="e#1473#1579#0" expanded="false" />
+            <element signature="e#2885#3013#0" expanded="false" />
+            <element signature="e#3042#3161#0" expanded="false" />
           </folding>
         </state>
       </provider>
