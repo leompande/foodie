@@ -22,4 +22,9 @@ class Restaurant extends Model
     {
         return $this->hasMany('App\MenuItem');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

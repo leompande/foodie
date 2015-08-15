@@ -46,6 +46,15 @@ fudiApp.factory('OrderService',function($resource) {
 
 
 
+fudiApp.service('OwnerService',function($resource) {
+    return $resource("public/index.php/user/:id",{
+            id: '@id'
+        },
+        {
+            'update': { method:'PUT' }
+        });
+});
+
 fudiApp.service('UserService',function($resource,$http,$cookieStore) {
     var user = {};
     user.getByCredential = getByCredential;
@@ -75,7 +84,7 @@ function logUserOut(userId) {
 });
 
 
-fudiApp.service('AuthService',function(UserService,$timeout,$cookieStore) {
+fudiApp.service('AuthService',function(UserService,$timeout,$cookies) {
     var service = {};
 
     service.Login = Login;
@@ -100,15 +109,15 @@ fudiApp.service('AuthService',function(UserService,$timeout,$cookieStore) {
                                 email:data.data.email
                             };
                             //role:data.data.role
-                            $cookieStore.put('logedUser',user);
+                            $cookies.logedUser = user;
                             response = {success: true};
                         }else{
-                            response = {success: false, message: 'Username or password is incorrect'};
+                            response = {success: false, message: 'Email or password is incorrect'};
 
                         }
 
                     } else {
-                        response = {success: false, message: 'Username or password is incorrect'};
+                        response = {success: false, message: 'Email or password is incorrect'};
                     }
                     callback(response,data.data);
                 });

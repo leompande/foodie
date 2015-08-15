@@ -7,19 +7,19 @@ var fudiApp = angular.module("fudiApp",['ngRoute','uiGmapgoogle-maps','ngResourc
 fudiApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/main', {
-            templateUrl: "public/fudi_app/views/main.html",
+            templateUrl: "public/fudi_app/views/main.html"
             // controller: "mainController"
         })
         .when('/rests', {
-            templateUrl: "public/fudi_app/views/admin/restaurants.html",
+            templateUrl: "public/fudi_app/views/admin/restaurants.html"
             // controller: "restsController"
         })
         .when('/maps/:id/:pagename', {
-            templateUrl: "public/fudi_app/views/admin/restsInGoogleMap.html",
+            templateUrl: "public/fudi_app/views/admin/restsInGoogleMap.html"
             // controller: "restsController"
         })
         .when('/visitors', {
-            templateUrl: "public/fudi_app/views/admin/visitors.html",
+            templateUrl: "public/fudi_app/views/admin/visitors.html"
             // controller: "visitorsController"
         })
         .when('/', {
@@ -27,7 +27,7 @@ fudiApp.config(['$routeProvider', function($routeProvider) {
             controller: "loginController"
         })
         .when('/settings/:id', {
-            templateUrl: "public/fudi_app/views/user/index.html",
+            templateUrl: "public/fudi_app/views/user/index.html"
             //controller: "loginController"
         })
 
@@ -36,13 +36,13 @@ fudiApp.config(['$routeProvider', function($routeProvider) {
 fudiApp.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
     $rootScope.$on('$routeChangeStart', function (event) {
 console.log(event);
-        //if (!Auth.isLoggedIn()) {
+        if (!Auth.isLoggedIn()) {
         //    //event.preventDefault();
         //    $location.path('/login');
-        //}
-        //else {
+        }
+        else {
         //    $location.path('/rests');
-        //}
+        }
     });
 }]);
 

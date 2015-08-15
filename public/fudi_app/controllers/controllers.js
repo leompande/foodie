@@ -20,32 +20,45 @@ fudiApp.controller("loginController",function($scope,$route,$location,$timeout,$
 
 
         //console.log(user);
-        $scope.login(user.email,user.password,function(response,user){
+        if(user==null){
+            $scope.response = {message: 'no email or password specified'}
+        } else{
+            if(user.email==null){
+                $scope.response = {message: 'no email specified'}
+            }else if(user.password==null){
+                $scope.response = {message: 'no password specified'}
+            }else {
+                $scope.login(user.email, user.password, function (response, user) {
 
-            if(response.success){
-                Auth.setUser(user);
-                //$scope.user = user;
-                //$scope.isLoggedIn = true;
-                //$location.path( "/rests" );
-            }else{
-                $scope.response = response;
-                console.log($scope.response)
+                    if (response.success) {
+                        Auth.setUser(user);
+                        //$scope.user = user;
+                        //$scope.isLoggedIn = true;
+                        $location.path("/rests");
+                    } else {
+                        $scope.response = response;
+                        console.log($scope.response)
+                    }
+
+                });
             }
+        }
 
-        });
+
 
     };
 });
 
-fudiApp.controller("mainController",function($scope,$route,$http,$cookieStore,$location,RestaurantService,AuthService,Auth){
-
-        $scope.logedUser = $cookieStore.get('logedUser');
+fudiApp.controller("mainController",function($scope,$route,$http,$log,$cookies,$location,RestaurantService,OwnerService,AuthService,Auth){
+    $scope.$watch(function() { return $cookies.logedUser; }, function(newValue) {
+        $scope.logedUser = $cookies.logedUser;
+    });
 
     $scope.logout = function(){
         AuthService.LogOut($scope.logedUser.id,function(response,data){
             if(response.success){
-                $cookieStore.remove('logedUser');
-                $location.path( "/login" );
+                $cookies.logedUser = null;
+                    $location.path( "/login" );
             }else{
 
             }
@@ -53,8 +66,7 @@ fudiApp.controller("mainController",function($scope,$route,$http,$cookieStore,$l
 
         });
     };
-
-  RestaurantService.prototype.$save = function() {
+    RestaurantService.prototype.$save = function() {
     if (this.id) {
         return this.$update();
     } else {
@@ -63,19 +75,29 @@ fudiApp.controller("mainController",function($scope,$route,$http,$cookieStore,$l
 };
     $scope.selections = "menu";
     // $scope.restaurants = null;
+    $scope.getRestOwners = function(){
+        OwnerService.query().$promise.then(function(data) {
+    $scope.owners = data;
+    });
+  };
+    $scope.getRestOwners();
     $scope.getRestaurants = function(){
     RestaurantService.query().$promise.then(function(data) {
     $scope.restaurants = data;
     });
   };
-
     $scope.getRestaurants();
 
 });
 
-fudiApp.controller("restsController",function($scope,$route,$location,$http,$routeParams,$filter,RestaurantService){
-  
-  $scope.restaurant = $filter('filterRestaurant')($scope.$parent.restaurants, {id:$routeParams.id});
+fudiApp.controller("restsController",function($scope,$route,$location,$http,$routeParams,$cookies,$filter,RestaurantService,OwnerService){
+
+    if($scope.$parent.restaurants){
+        $cookies.restaurant =  $filter('filterRestaurant')($scope.$parent.restaurants, {id:$routeParams.id});
+        $scope.restaurant = $cookies.restaurant;
+    }else{
+        //$scope.restaurant = $cookies.restaurant;
+    }
   $scope.addNewRest = function(restaurant){
     RestaurantService.save(restaurant).$promise.then(function(data) {
     $scope.getRestaurants();
@@ -119,9 +141,24 @@ fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filt
   
 });
 fudiApp.controller("visitorsController",function($scope,$route){});
-fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$filter,MenuService,MenuItemService,OrderService){
+fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$cookies,$cookieStore,$filter,MenuService,MenuItemService,OrderService){
+
+    if(typeof($scope.$parent.restaurants)!== "undefined"){
+        if(typeof(Storage) !== "undefined") {
+            $scope.resname = localStorage.getItem('restname');
+           var rest =  $filter('filterRestaurant')($scope.$parent.restaurants, {id:$routeParams.id});
+           if($scope.resname!==rest.name && rest!==null){
+               localStorage.setItem("restname", rest.name);
+           }
 
 
+        } else {
+            $scope.resname = localStorage.getItem('restname');
+        }
+        $scope.resname = localStorage.getItem('restname');
+    }else{
+        $scope.resname = localStorage.getItem('restname');
+    }
     $scope.loadHtml = 'public/fudi_app/views/admin/menu/orders.html';
     $scope.menu = null;
     $scope.menu_type = 'Breakfast';

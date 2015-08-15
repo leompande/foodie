@@ -30,7 +30,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in items | filter:{menu_id:menu.id}" >
+                <tr ng-repeat="item in items | filter:{menu_id:menu.id} | filter:{restaurant_id:current_rest_id}" >
                     <td>
                         <span ng-show="tableText">{{item.item_name}}</span>
                         <span ng-show="tableInput">

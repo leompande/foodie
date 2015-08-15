@@ -16,6 +16,7 @@ class CreateRestaurantTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('location_id');
+            $table->text('user_id');
             $table->timestamps();
         });
     }
