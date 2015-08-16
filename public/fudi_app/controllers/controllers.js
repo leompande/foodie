@@ -155,8 +155,10 @@ fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filt
     $scope.getMenuItems();
 });
 fudiApp.controller("visitorsController",function($scope,$route){});
-fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$cookies,$cookieStore,$filter,MenuService,MenuItemService,OrderService){
-
+fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$cookies,$cookieStore,$filter,$location,MenuService,MenuItemService,RestaurantService,OrderService){
+    RestaurantService.query().$promise.then(function(data) {
+        $scope.restaurant = $filter('filterRestaurant')(data, {id:$routeParams.id});
+    });
     if(typeof($scope.$parent.restaurants)!== "undefined"){
         if(typeof(Storage) !== "undefined") {
             $scope.resname = localStorage.getItem('restname');
@@ -245,7 +247,11 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
         $scope.menu_type = menu;
     }
 
+    $scope.openInGoogleMap = function(restaurant){
 
+        $location.path( "/maps/"+$scope.restaurant.id+"/"+$scope.restaurant.location.location_name );
+
+    };
 
 
 });

@@ -70,7 +70,7 @@
                          </ul>
                      </collapsible-item>
 
-                     </ang-accordion>
+                 </ang-accordion>
             </li>
             </ul>
             </div>
@@ -111,7 +111,7 @@
             </li>   
             <li class="input-field noPadding">
            
-           <table>
+            <table>
               <tr><td><a class="btn onYellow rised" id="add_restaurant" ng-click="updateRest(restaurant)">Edit</a></td><td><a ng-click="hideEditForm()" class='btn onRed rised btn-xs'>Cancel</a></td></tr>
             </table>
           
@@ -131,7 +131,7 @@
           
            </div>
              <ul>
-                 <li><b>{{restaurant.name}}</b></li>
+                 <li><b>{{restaurant.name}}</b>&nbsp;&nbsp;<a href="#/settings/{{restaurant.id}}" title="open settings"><i class="fa fa-cog "></i></a></li>
                  <li>Location:{{restaurant.location.location_name}}</li>
              </ul>
         </div>
