@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="public/fudi_app/css/normalize.css">
     <link rel="stylesheet" href="public/fudi_app/css/main.css">
     <link rel="stylesheet" href="public/fudi_app/css/theme.css">
+    <link rel="stylesheet" href="public/fudi_app/js/accordion/ang-accordion.css">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="public/fudi_app/css/font-awesome.min.css">
     <!-- Baseline Grid -->
@@ -38,7 +39,7 @@
     <script src="public/fudi_app/js/jquery.ripple.js"></script>
     <script src='public/fudi_app/js/bower_components/lodash/lodash.js'></script>
     <script src='public/fudi_app/js/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
-
+    <script src='public/fudi_app/js/accordion/ang-accordion.js'></script>
 
     <!--<script src="public/fudi_app/js/main.min.js"></script>-->
     <script src="public/fudi_app/js/pegination/dirPagination.js"></script>
@@ -51,6 +52,10 @@
         .ngFade.ng-enter-active { opacity: 1; }
         .ngFade.ng-leave { transition: 0.1s linear all; opacity: 1; }
         .ngFade.ng-leave-active { opacity: 0; }
+
+        .currentMenu{
+            border-bottom: 1px solid #cccccc;;
+        }
     </style>
 </head>
 <body ng-app="fudiApp" ng-controller="mainController">

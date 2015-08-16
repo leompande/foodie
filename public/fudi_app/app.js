@@ -1,7 +1,7 @@
 /**
  * Created by leo on 7/9/15.
  */
-var fudiApp = angular.module("fudiApp",['ngRoute','uiGmapgoogle-maps','ngResource','ngCookies','ngAnimate','angularUtils.directives.dirPagination']);
+var fudiApp = angular.module("fudiApp",['ngRoute','uiGmapgoogle-maps','angAccordion','ngResource','ngCookies','ngAnimate','angularUtils.directives.dirPagination']);
 
 // fleet module configurations
 fudiApp.config(['$routeProvider', function($routeProvider) {

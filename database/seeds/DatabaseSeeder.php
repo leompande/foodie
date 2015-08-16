@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
          $this->call(LocationTableSeeder::class);
          $this->call(MenuItemTableSeeder::class);
          $this->call(MenuTableSeeder::class);
+         $this->call(TimeTableTableSeeder::class);
+         $this->call(OrderTableSeeder::class);
+         $this->call(OrderedItemsTableSeeder::class);
 
         Model::reguard();
     }

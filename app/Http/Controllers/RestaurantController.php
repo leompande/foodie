@@ -19,9 +19,10 @@ class RestaurantController extends Controller
     public function index(Request $request)
     {
         // get all restaurants and locations
-        $restaurants = Restaurant::with(array('location' => function($query)
-        {
-        }))->get();
+        //array('location' => function($query)
+//        {
+//        })
+        $restaurants = Restaurant::with('location','timetable')->get();
 
         return $restaurants;
 

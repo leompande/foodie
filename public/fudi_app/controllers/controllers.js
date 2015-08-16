@@ -116,7 +116,7 @@ fudiApp.controller("restsController",function($scope,$route,$location,$http,$rou
           
   };
 });
-fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filter,RestaurantService){
+fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filter,MenuItemService,MenuService,RestaurantService){
   $scope.viewDetails = true;
   $scope.editButton  = true;
   $scope.editForm    = false;
@@ -138,7 +138,21 @@ fudiApp.controller("restmapController",function($scope,$route,$routeParams,$filt
     $scope.restaurant = $filter('filterRestaurant')(data, {id:$routeParams.id});
     $scope.center = {latitude:$scope.restaurant.location.latitude,longitude:$scope.restaurant.location.longitude};
   });
-  
+
+
+
+    $scope.getMenus = function(){
+        MenuService.query().$promise.then(function(data) {
+            $scope.menus = data;
+        });
+    };
+    $scope.getMenus();
+    $scope.getMenuItems = function(){
+        MenuItemService.query().$promise.then(function(data) {
+            $scope.items = data;
+        });
+    };
+    $scope.getMenuItems();
 });
 fudiApp.controller("visitorsController",function($scope,$route){});
 fudiApp.controller("settingController",function($scope,$route,$http,$routeParams,$cookies,$cookieStore,$filter,MenuService,MenuItemService,OrderService){
@@ -194,6 +208,28 @@ fudiApp.controller("settingController",function($scope,$route,$http,$routeParams
         angular.element($event.target).addClass("onYellow");
     }
     $scope.flipMenu = function(menu){
+        //
+        if(menu=="menus"){
+            $scope.currentClassM = "currentMenu";
+            $scope.currentClassO = "";
+            $scope.currentClassR = "";
+            $scope.currentClassC = "";
+        }if(menu=="orders"){
+            $scope.currentClassM = "";
+            $scope.currentClassO = "currentMenu";
+            $scope.currentClassR = "";
+            $scope.currentClassC = "";
+        }if(menu=="visitors"){
+            $scope.currentClassM = "";
+            $scope.currentClassO = "";
+            $scope.currentClassR = "";
+            $scope.currentClassC = "currentMenu";
+        }if(menu=="report"){
+            $scope.currentClassM = "";
+            $scope.currentClassO = "";
+            $scope.currentClassR = "currentMenu";
+            $scope.currentClassC = "";
+        }
         $scope.loadHtml =  'public/fudi_app/views/admin/menu/'+menu+'.html';
 
     }

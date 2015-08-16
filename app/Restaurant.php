@@ -27,4 +27,9 @@ class Restaurant extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function timetable()
+    {
+        return $this->hasMany('App\Timetable');
+    }
 }

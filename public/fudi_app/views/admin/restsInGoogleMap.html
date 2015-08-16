@@ -9,38 +9,39 @@
   <script src='//maps.googleapis.com/maps/api/js'></script>
     <div class="row">
       <div class="col-md-12">
-        <nav class="hidden-xs">
-            <ul class="mainNav">
-              
-                <li>
-                    <a href="#/main" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                      <span style="position: relative; z-index: 2;"><i class="fa fa-cutlery fa-2x"></i></span>
-                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
-                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
-                      </span>
-                    </a>
-                </li>
+          <nav class="hidden-xs">
+              <ul class="mainNav" style="margin-left: 4.8rem;">
 
-                              
-                <li>
-                    <a href="#/rests" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                      <span style="position: relative; z-index: 2;">Restaurants</span>
+                  <li>
+                      <a href="#/main" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                          <span style="position: relative; z-index: 2;"><i class="fa fa-cutlery fa-2x"></i></span>
                       <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
                       <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
                       </span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="#/visitors" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                      <span style="position: relative; z-index: 2;">Visitors</span>
+                      </a>
+                  </li>
+
+
+                  <li>
+                      <a href="#/rests" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                          <span style="position: relative; z-index: 2;">Restaurants</span>
                       <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
                       <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
                       </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#/rests" class="btn" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                          <span style="position: relative; z-index: 2;">Users</span>
+                      <span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 0px; opacity: 1; transition: none; -webkit-transition: none;">
+                      <span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; transform: scale3d(0, 0, 1); transition: none; -webkit-transition: none; background-color: rgba(0, 0, 0, 0.2);"></span>
+                      </span>
+                      </a>
+                  </li>
+
+
+              </ul>
+          </nav>
       </div>
         
     </div>
@@ -52,10 +53,24 @@
             <h6 class="blockUlHeader">{{restaurant.name}}</h6>
             <ul class="blockUl">
             <li class="input-field noPadding">
-            <b>Open Hours:</b>
+            <b>Opening Hours:</b>
+                <ul style="font-size: 11px;">
+                    <li><span style="font-weight: bold">Week days:</span> <span >{{restaurant.timetable[0].weekdays}}</span></li>
+                    <li><span style="font-weight: bold">Weekend:</span> <span>{{restaurant.timetable[0].weekend}}</span></li>
+                    <li><span style="font-weight: bold">Holidays:</span> <span>{{restaurant.timetable[0].holiday}}</span></li>
+                </ul>
             </li>
              <li class="input-field noPadding">
             <b>Menu</b>
+                 <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="fa fa-chevron-right" open-icon-class="fa fa-chevron-down">
+
+                     <collapsible-item ng-repeat="menu in menus" item-title="{{menu.menu_name}}" >
+                         <ul>
+                         <li ng-repeat="item in items | filter:{menu_id:menu.id} | filter:{restaurant_id:restaurant.id}"><a style="cursor: pointer" title="place order">- &nbsp;{{item.item_name}} &nbsp;<i class="fa fa-share"></i></a></li>
+                         </ul>
+                     </collapsible-item>
+
+                     </ang-accordion>
             </li>
             </ul>
             </div>
@@ -115,7 +130,10 @@
               </ui-gmap-google-map>
           
            </div>
-           details:{{restaurant}}
+             <ul>
+                 <li><b>{{restaurant.name}}</b></li>
+                 <li>Location:{{restaurant.location.location_name}}</li>
+             </ul>
         </div>
     </div>
 </div>

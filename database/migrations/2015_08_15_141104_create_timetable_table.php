@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateTimetableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('timetables', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime("delivery_time");
             $table->integer("restaurant_id");
-            $table->integer("client_id");
-            $table->text("delivery_type");
-            $table->text("order_status");
+            $table->text("weekdays");
+            $table->text("weekend");
+            $table->text("holiday");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::drop('timetables');
     }
 }
